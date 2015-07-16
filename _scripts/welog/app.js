@@ -1,9 +1,7 @@
 $(document).ready(function() {
-  // $.magnificPopup.instance 
-  // for get log data
+  // $.magnificPopup.instance Popup data
   var baseTitle = 'welcome to Welog.co';
   var baseUrl = '/naapaii/_scripts/welog/';
- 
 
   $('.simple-ajax-popup-align-top').click(function(e){
     e.preventDefault();
@@ -27,27 +25,27 @@ $(document).ready(function() {
       },
       ajaxContentAdded: function() {
         console.log('Ajax content added, and the popup opened!');
+
         $(document).on('keyup',function(evt) {
           if (evt.keyCode == 27) {
-            if(mgObj) { 
-              $.magnificPopup.close();
-              console.log("You close popup by {Pressed: ESC}");
-            }
+            $.magnificPopup.close();
+            console.log("You close popup by {Pressed: ESC}");
+          } else if(evt.keyCode == 8) {
+            $.magnificPopup.close();
+            console.log("You close popup by {Pressed: Backspace}");
           }
         });
-
         $(document).mouseup(function (e)
         {
-            var container = $("#magnific-content");
-            if (!container.is(e.target) && container.has(e.target).length === 0)
-            {
-              console.log("You close popup by {Clicked of Div}!");
-              $.magnificPopup.close();
-            }
+          var container = $("#magnific-content");
+          if (!container.is(e.target) && container.has(e.target).length === 0)
+          {
+            console.log("You close popup by {Clicked of Div}!");
+            $.magnificPopup.close();
+          }
         });
       },
       beforeOpen: function() {
-        // this.items[0].href = this.items[0].href + '?=' + Math.random(); 
         console.log("Before Open");
       },
       open: function() {

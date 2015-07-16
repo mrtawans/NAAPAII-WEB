@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/styles.css">
 </head>
 <body>
+<?php if(($this->session->userdata('logged_in'))) { ?>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,44 +28,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <?php if(($this->session->userdata('logged_in'))) { ?>
         <li class="active"><a href="<?php echo base_url(); ?>">Overview<span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Articles Dashboard</a></li>
+            <li><a href="<?php echo site_url(); ?>/Article/Dashboard">Articles Dashboard</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Create Articles</a></li>
-            <li><a href="#">Manange Articles</a></li>
+            <li><a href="<?php echo site_url(); ?>/Article/Create">Create Articles</a></li>
+            <li><a href="<?php echo site_url(); ?>/Article/Manange">Manange Articles</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Users Dashboard</a></li>
+            <li><a href="<?php echo site_url(); ?>/User/Dashboard">Users Dashboard</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Create Users</a></li>
-            <li><a href="#">Manange Users</a></li>
+            <li><a href="<?php echo site_url(); ?>/User/Create">Create Users</a></li>
+            <li><a href="<?php echo site_url(); ?>/User/Manage">Manange Users</a></li>
           </ul>
         </li>
+        <?php } ?>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      </form> -->
+      <?php if(($this->session->userdata('logged_in'))) { ?>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, TAWAN <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo strtoupper($this->session->userdata('username')); ?> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Issues</a></li>
+            <li><a href="<?php echo site_url(); ?>/Create/Issues">Issues</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Account Setting</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="<?php echo site_url(); ?>/User/Setting">Account Setting</a></li>
+            <li><a href="<?php echo site_url(); ?>/User/Logout">Logout</a></li>
           </ul>
         </li>
       </ul>
+      <?php } ?>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<?php } ?>
 <div class="page">
