@@ -6,14 +6,6 @@ class User extends CI_Controller
      public function __construct()
      {
           parent::__construct();
-          $this->load->library('session');
-          $this->load->helper('form');
-          $this->load->helper('url');
-          $this->load->helper('html');
-          $this->load->database();
-          $this->load->library('form_validation');
-          //load the login model
-          $this->load->model('login_model');
      }
 
      public function index() {
@@ -43,10 +35,10 @@ class User extends CI_Controller
                else
                {
                     //validation succeeds
-                    if ($this->input->post('btn_login') == "Login")
+                    if ($this->input->post('post_login') == 1)
                     {
                          //check if username and password is correct
-                         $usr_result = $this->login_model->get_user($username, $password);
+                         $usr_result = $this->users_model->_checkUserLogin($username, md5($password));
                          if ($usr_result > 0) //active user record is present
                          {
                               //set the session variables
@@ -61,12 +53,12 @@ class User extends CI_Controller
                          else
                          {
                               $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Invalid username and password!</div>');
-                              redirect('User/welcome');
+                              redirect('User/login');
                          }
                     }
                     else
                     {
-                         redirect('User/welcome');
+                         redirect('User/login');
                     }
                }
           } else {

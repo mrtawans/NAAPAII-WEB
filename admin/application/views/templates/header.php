@@ -50,16 +50,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </li>
         <?php } ?>
       </ul>
-      <!-- <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
       <?php if(($this->session->userdata('logged_in'))) { ?>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo strtoupper($this->session->userdata('username')); ?> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Welcome, <?php echo strtoupper($this->session->userdata('username')); ?> 
+          <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo site_url(); ?>/Create/Issues">Issues</a></li>
             <li role="separator" class="divider"></li>
